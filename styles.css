@@ -1,0 +1,98 @@
+/* Seismic Contract Marketplace — Vanilla CSS with a clean, modern aesthetic */
+:root{
+  --bg: #0b0d10;
+  --panel: #11141a;
+  --card: #131823;
+  --muted: #7b8598;
+  --text: #e7ebf3;
+  --brand: #7cc3ff;
+  --accent: #b388ff;
+  --ok: #67e8a5;
+  --danger: #ff6b6b;
+  --shadow: 0 6px 24px rgba(0,0,0,.3);
+  --radius: 16px;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font: 14px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Inter, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji","Segoe UI Emoji";
+  color:var(--text);
+  background: radial-gradient(1200px 800px at 20% 0%, rgba(124,195,255,.12), transparent 60%),
+              radial-gradient(1000px 700px at 100% 0%, rgba(179,136,255,.12), transparent 60%),
+              var(--bg);
+}
+
+.container{max-width:1200px;margin:0 auto;padding:24px}
+
+.topbar{
+  position: sticky; top:0; z-index:10;
+  display:flex; gap:16px; align-items:center; justify-content:space-between;
+  padding:12px 16px; backdrop-filter: blur(10px);
+  background: rgba(11,13,16,.6); border-bottom:1px solid #1f2430;
+}
+
+.brand{display:flex; align-items:center; gap:12px}
+.brand .logo{width:28px;height:28px}
+.brand h1{font-size:18px; margin:0}
+.brand .tag{font-size:12px; color:var(--muted); border:1px solid #263044; border-radius:999px; padding:4px 8px}
+
+.controls{display:flex; flex-wrap:wrap; gap:10px; align-items:center; justify-content:flex-end}
+.controls input, .controls select, .controls button, .btn-file{
+  background:var(--panel); color:var(--text); border:1px solid #263044; border-radius:10px;
+  padding:10px 12px; outline:none; box-shadow:none; transition:.2s all;
+}
+.controls input:focus, .controls select:focus{border-color:var(--brand); box-shadow:0 0 0 3px rgba(124,195,255,.15)}
+.controls button{cursor:pointer}
+.controls .ghost{background:transparent}
+.controls .danger{border-color:#40252a; color:#ff9aa0}
+
+.grid{display:grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap:16px}
+.card{
+  background:linear-gradient(160deg, rgba(124,195,255,.07), rgba(179,136,255,.07)) border-box;
+  border:1px solid #222a3a; border-radius:var(--radius); padding:16px; box-shadow:var(--shadow);
+  display:flex; flex-direction:column; gap:12px;
+}
+.card header{display:flex; align-items:center; gap:10px; justify-content:space-between}
+.card h3{margin:0; font-size:16px}
+.badges{display:flex; gap:6px; flex-wrap:wrap}
+.badge{font-size:11px; padding:6px 8px; border-radius:999px; border:1px solid #2a3347; color:#b9c4da; background:#0f1420}
+.badge.license{border-color:#2b3b3b; color:#a5e2d9; background:#0c1515}
+.badge.fee{border-color:#3b2b3b; color:#f3b1c4; background:#181015}
+.badge.verified{border-color:#1f3b2c; color:#b6f3d1; background:#0e1612}
+.tags{display:flex; flex-wrap:wrap; gap:6px}
+.tagpill{font-size:11px; border:1px dashed #2a3347; padding:4px 6px; border-radius:999px; color:#9fb1cf}
+
+.card .desc{color:#b7c2d9; min-height:48px}
+.card .meta{display:flex; align-items:center; justify-content:space-between; gap:8px; color:var(--muted)}
+.card .actions{display:flex; gap:8px}
+.button{padding:10px 12px; background: var(--panel); border:1px solid #2a3347; color:var(--text); border-radius:10px; cursor:pointer}
+.button.primary{background: linear-gradient(135deg, #1e283a, #1c2130); border:1px solid #2a3347}
+.button:hover{transform: translateY(-1px)}
+
+.stars{display:inline-flex; gap:2px; cursor:pointer}
+.star{font-size:16px; color:#5f6c85}
+.star.on{color:#ffd76a}
+.count{font-size:12px; color:var(--muted); margin-left:4px}
+
+.empty{border:1px dashed #2a3347; border-radius:var(--radius); padding:36px; text-align:center; color:var(--muted)}
+
+footer.footer{padding:24px; text-align:center; color:#90a0bb}
+
+/* Dialogs */
+dialog{border:none; border-radius:16px; background:#0f1420; color:var(--text); width:min(780px, 92vw); padding:0; box-shadow: var(--shadow)}
+dialog::backdrop{background: rgba(0,0,0,.6); backdrop-filter: blur(2px)}
+dialog header{display:flex; align-items:center; justify-content:space-between; padding:14px 16px; border-bottom:1px solid #223048}
+dialog h3{margin:0}
+dialog .actions{display:flex; justify-content:flex-end; gap:10px; padding:14px 16px; border-top:1px solid #223048}
+dialog form{padding:0}
+.form-grid{display:grid; gap:12px; padding:16px; grid-template-columns: repeat(2, minmax(0, 1fr))}
+.form-grid label{display:flex; flex-direction:column; gap:6px; font-weight:600; color:#cbd5e4}
+.form-grid input, .form-grid textarea, .form-grid select{
+  background:#0c111b; border:1px solid #223048; padding:10px 12px; border-radius:10px; color:var(--text);
+}
+.form-grid .checkbox{flex-direction:row; align-items:center; gap:10px}
+.form-grid .span-2{grid-column: 1 / -1}
+.icon{background:transparent; border:1px solid #223048; color:#a6b2c9; border-radius:8px; padding:6px 10px; cursor:pointer}
+.btn-file{cursor:pointer; user-select:none}
