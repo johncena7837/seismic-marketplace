@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Seismic Contract Marketplace (Community)</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="assets/logo.svg" />
+  <meta name="description" content="Community-built marketplace for Seismic contracts & contract-services. Vanilla HTML/CSS/JS demo." />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <img src="assets/logo.svg" alt="Seismic" class="logo" />
+      <h1>Seismic Contract Marketplace</h1>
+      <span class="tag">Community Demo</span>
+    </div>
+    <div class="controls">
+      <input id="search" placeholder="Search contracts, authors, tags…" aria-label="Search" />
+      <select id="filterLicense" aria-label="Filter by license">
+        <option value="">License: Any</option>
+        <option>MIT</option>
+        <option>Apache-2.0</option>
+        <option>GPL-3.0</option>
+        <option>Proprietary</option>
+      </select>
+      <select id="filterFee" aria-label="Filter by fee">
+        <option value="">Fee: Any</option>
+        <option value="free">Free</option>
+        <option value="one_time">One-time</option>
+        <option value="subscription">Subscription</option>
+        <option value="rev_share">Rev-share</option>
+      </select>
+      <select id="sortSelect" aria-label="Sort by">
+        <option value="trending">Sort: Trending</option>
+        <option value="rating">Sort: Rating</option>
+        <option value="newest">Sort: Newest</option>
+        <option value="name">Sort: Name</option>
+      </select>
+      <button id="btnPublish">Publish</button>
+      <button id="btnExport" class="ghost">Export JSON</button>
+      <label for="fileImport" class="ghost btn-file">Import JSON</label>
+      <input id="fileImport" type="file" accept="application/json" hidden />
+      <button id="btnReset" class="danger ghost" title="Clear local data & reload seed">Reset</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <div id="emptyState" class="empty" hidden>
+      <h2>No contracts match your filters</h2>
+      <p>Try clearing your filters or searching a different term.</p>
+    </div>
+    <div id="cards" class="grid"></div>
+  </main>
+
+  <footer class="footer">
+    <p>Built with ❤️ using vanilla HTML/CSS/JS. Not affiliated with Seismic. Data is stored locally in your browser.</p>
+  </footer>
+
+  <!-- Publish Modal -->
+  <dialog id="publishDialog">
+    <form id="publishForm" method="dialog">
+      <header>
+        <h3>Publish contract / service</h3>
+        <button type="button" class="icon" id="closePublish" aria-label="Close">✕</button>
+      </header>
+
+      <div class="form-grid">
+        <label> Name
+          <input name="name" required minlength="3" placeholder="ShieldedSwap" />
+        </label>
+
+        <label> Author / Org
+          <input name="author" required placeholder="Walnut Labs" />
+        </label>
+
+        <label> Website
+          <input name="website" type="url" placeholder="https://example.org" />
+        </label>
+
+        <label> Category
+          <input name="category" placeholder="DeFi, Oracles, Tools…" />
+        </label>
+
+        <label> Tags (comma separated)
+          <input name="tags" placeholder="dex, amm, privacy" />
+        </label>
+
+        <label> License
+          <select name="license" required>
+            <option>MIT</option>
+            <option>Apache-2.0</option>
+            <option>GPL-3.0</option>
+            <option>Proprietary</option>
+          </select>
+        </label>
+
+        <label> Fee Type
+          <select name="feeType">
+            <option value="free">Free</option>
+            <option value="one_time">One-time</option>
+            <option value="subscription">Subscription</option>
+            <option value="rev_share">Rev-share</option>
+          </select>
+        </label>
+
+        <label> Fee Amount
+          <input name="feeAmount" type="number" min="0" step="0.01" placeholder="0" />
+        </label>
+
+        <label> Contract Address (optional)
+          <input name="address" placeholder="0x…" />
+        </label>
+
+        <label> Initial Version (semver)
+          <input name="version" required pattern="^\d+\.\d+\.\d+$" placeholder="1.0.0" />
+        </label>
+
+        <label> Version URL (source/binary/docs)
+          <input name="url" type="url" required placeholder="https://…" />
+        </label>
+
+        <label class="checkbox">
+          <input type="checkbox" name="verified" />
+          Verified
+        </label>
+
+        <label class="span-2"> Short Description
+          <textarea name="description" rows="3" placeholder="Encrypted AMM for Seismic"></textarea>
+        </label>
+      </div>
+
+      <footer class="actions">
+        <button value="cancel" class="ghost">Cancel</button>
+        <button id="submitPublish" value="default">Publish</button>
+      </footer>
+    </form>
+  </dialog>
+
+  <!-- Details Modal -->
+  <dialog id="detailsDialog">
+    <article id="detailsContent"></article>
+    <footer class="actions">
+      <button id="closeDetails" class="ghost">Close</button>
+    </footer>
+  </dialog>
+
+  <script defer src="app.js"></script>
+</body>
+</html>
